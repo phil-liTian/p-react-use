@@ -52,6 +52,7 @@ const useBattery = (): UseBatteryState => {
         dischargingTime: battery?.dischargingTime,
         level: battery?.level,
       };
+      console.log("chargingTime", battery);
 
       setState(newState);
     };
@@ -63,6 +64,7 @@ const useBattery = (): UseBatteryState => {
       on(battery, "chargingtimechange", handleChange);
       on(battery, "dischargingtimechange", handleChange);
       on(battery, "levelchange", handleChange);
+      handleChange();
     });
 
     return () => {

@@ -1,4 +1,8 @@
-<!doctype html>
+<!--
+ * @Author: phil
+ * @Date: 2025-11-28 15:57:18
+-->
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -9,5 +13,27 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <script>
+      // 解析 404.html 传递的 redirect 参数
+      const searchParams = new URLSearchParams(window.location.hash.slice(1));
+      const redirectPath = searchParams.get("redirect");
+
+      if (redirectPath) {
+        // 移除 hash 参数，避免重复跳转
+        window.location.hash = "";
+        // 延迟执行，确保 React Router 已初始化
+        setTimeout(() => {
+          // 跳转到实际路由（需和 basename 拼接）
+          window.history.pushState(
+            {},
+            "",
+            "/p-react-use/" + redirectPath.replace("/p-react-use/", "")
+          );
+          // 强制刷新路由（可选，确保 React Router 感知）
+          window.dispatchEvent(new PopStateEvent("popstate"));
+        }, 0);
+      }
+    </script>
   </body>
 </html>

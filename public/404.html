@@ -1,0 +1,21 @@
+<!--
+ * @Author: phil
+ * @Date: 2025-12-02 15:52:36
+-->
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirect</title>
+    <script>
+      // 1. 获取当前完整路径（含路由）
+      const path = window.location.pathname;
+      // 2. 跳转到 index.html，并把路由作为参数传递
+      window.location.replace(
+        // 替换成你的仓库名（和 basename 一致）
+        "/p-react-use/index.html#redirect=" + encodeURIComponent(path)
+      );
+    </script>
+  </head>
+  <body></body>
+</html>

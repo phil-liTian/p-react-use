@@ -59,6 +59,8 @@ export const Battery: FC = () => {
   }
 
   const { charging, level, chargingTime, dischargingTime } = battery;
+  console.log("chargingTime", chargingTime);
+
   const batteryPercentage = Math.round(level * 100);
   const batteryColor =
     batteryPercentage > 50
@@ -93,7 +95,7 @@ export const Battery: FC = () => {
           <span className="detail-label">充电状态:</span>
           <span className="detail-value">{charging ? "是" : "否"}</span>
         </div>
-        {chargingTime > 0 && (
+        {chargingTime > 0 && chargingTime !== Infinity && (
           <div className="detail-item">
             <span className="detail-label">充满时间:</span>
             <span className="detail-value">
@@ -101,12 +103,24 @@ export const Battery: FC = () => {
             </span>
           </div>
         )}
-        {!charging && dischargingTime > 0 && (
+        {chargingTime === Infinity && (
+          <div className="detail-item">
+            <span className="detail-label">充满时间:</span>
+            <span className="detail-value">计算中...</span>
+          </div>
+        )}
+        {!charging && dischargingTime > 0 && dischargingTime !== Infinity && (
           <div className="detail-item">
             <span className="detail-label">剩余时间:</span>
             <span className="detail-value">
               {Math.round(dischargingTime / 60)} 分钟
             </span>
+          </div>
+        )}
+        {!charging && dischargingTime === Infinity && (
+          <div className="detail-item">
+            <span className="detail-label">剩余时间:</span>
+            <span className="detail-value">计算中...</span>
           </div>
         )}
       </div>
