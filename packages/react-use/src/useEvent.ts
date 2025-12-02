@@ -55,6 +55,7 @@ const useEvent = <T extends UseEventTarget>(
   useEffect(() => {
     if (!handler || !target) return;
     if (isListenerType1(target)) {
+      // @ts-ignore
       on(target, name, handler, options);
     } else if (isListenerType2(target)) {
       target.on(name, handler, options);
@@ -62,6 +63,7 @@ const useEvent = <T extends UseEventTarget>(
 
     return () => {
       if (isListenerType1(target)) {
+        // @ts-ignore
         off(target, name, handler, options);
       } else if (isListenerType2(target)) {
         target.off(name, handler, options);
