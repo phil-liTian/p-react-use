@@ -1,34 +1,20 @@
 /*
  * @Author: phil
- * @Date: 2025-11-28 16:31:52
+ * @Date: 2025-12-03 11:05:39
  */
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { Battery } from "./Battery";
-import { Counter } from "./Counter";
-import { GetSet } from "./GetSet";
-import { Update } from "./Update";
-import { Toggle } from "./Toggle";
-import { Event } from "./Event";
-import { Key } from "./Key";
-import { Latest } from "./Latest";
+import { Button } from "./Button";
 
-const HookDemo = () => {
-  const [activeSection, setActiveSection] = useState("battery");
+const ComponentsDemo = () => {
+  const [activeSection, setActiveSection] = useState("button");
   const [isMenuCollapsed, setIsMenuCollapsed] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
   const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
   // 组件配置数组
   const components = [
-    { id: "battery", label: "🔋 电池监控", icon: "🔋", Component: Battery },
-    { id: "counter", label: "🔢 计数器", icon: "🔢", Component: Counter },
-    { id: "update", label: "🔄 更新器", icon: "🔄", Component: Update },
-    { id: "getset", label: "⚙️ GetSet", icon: "⚙️", Component: GetSet },
-    { id: "toggle", label: "🔘 切换器", icon: "🔘", Component: Toggle },
-    { id: "event", label: "📡 事件监听", icon: "📡", Component: Event },
-    { id: "key", label: "⌨️ 键盘监听", icon: "⌨️", Component: Key },
-    { id: "latest", label: "📌 最新值", icon: "📌", Component: Latest },
+    { id: "button", label: "🔘 按钮组件", icon: "🔘", Component: Button },
   ];
 
   // 滚动到指定部分
@@ -245,4 +231,4 @@ const HookDemo = () => {
   );
 };
 
-export { HookDemo };
+export { ComponentsDemo };
